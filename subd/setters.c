@@ -8,10 +8,10 @@ int set_date_month();
 int set_date_day();
 
 
-void set_client(struct Client* last_put) {
+void set_client(struct Client clients[10], struct Client* last_put) {
 	set_name(last_put);
 	last_put->age = set_age();
-	last_put->phone = set_phone();
+	last_put->phone = set_phone(clients, last_put);
 	last_put->date_month = set_date_month();
 	last_put->date_day = set_date_day();
 }
@@ -46,7 +46,8 @@ int set_age() {
 }
 
 
-long long set_phone() {
+long long set_phone(struct Client clients[10], struct Client* last_put){
+	struct Client* client = clients;
 	long long phone;
 	long long check;
 	int res;
@@ -58,17 +59,24 @@ long long set_phone() {
 		if (res == 1) {
 			int k = 1;
 			while (check = check / 10) k++;
-			if (k > 10) return phone;
+			if (k > 10) {
+				for (client; client < last_put; client++) {
+					if (client->phone == phone) {
+						res = 0;
+						printf("Номер телефона уже есть в базе\n");
+					}
+				}
+			}
 			else {
-				phone = 0;
+				res = 0;
 				printf("Некорректный номер телефона\n");
 			}
 		}
 		else {
-			phone = 0;
 			printf("Некорректный номер телефона\n");
 		}
 	} while (res != 1);
+	return phone;
 }
 
 

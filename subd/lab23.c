@@ -32,11 +32,11 @@ void main() {
 		scanf("%d", command_pt);
 		switch (*command_pt) {
 		case 1: {
-			last_put = bulk_insert_bd(last_put);
+			last_put = bulk_insert_bd(clients, last_put);
 			break;
 		}
 		case 2: {
-			last_put = insert_bd(last_put);
+			last_put = insert_bd(clients, last_put);
 			break;
 		}
 		case 3: {

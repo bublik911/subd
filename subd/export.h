@@ -1,0 +1,1 @@
+void export_db(struct Client clients[10], struct Client* last_put);

@@ -1,0 +1,1 @@
+struct Client* insert_bd(struct Client* last_put);

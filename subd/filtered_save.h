@@ -1,0 +1,1 @@
+struct Client* save_new_list(struct Client clients[10], struct Client filtered_clients[10], struct Client* filter_last_put, struct Client* last_put);
